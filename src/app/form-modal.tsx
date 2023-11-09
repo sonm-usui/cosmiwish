@@ -72,7 +72,7 @@ export default function WishBoard({
         value={wish}
         style={{ color: 'black' }} 
         onChange={(e) => setWish(e.target.value)}
-        rows="4"
+        rows={4}
         className="border border-gray-300 rounded-md p-2 w-full"
         required
       />
