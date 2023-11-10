@@ -31,14 +31,12 @@ export default function Home() {
   }
   
   const handleOnClick = (e: any) => {
-    console.log(e.button);
-    if(e?.button === 2){
       const newStar = { x: e.clientX, y: e.clientY - 100 };
       setX(e.clientX);
       setY(e.clientY - 100);
       setStars([...stars, newStar] as any);
       setShowForm(true)
-    }
+   
   };
 
   const viewDetail = (e: any, star: any) => {
