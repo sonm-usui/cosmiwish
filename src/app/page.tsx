@@ -41,7 +41,7 @@ export default function Home() {
 
   const viewDetail = (e: any, star: any) => {
     setX(e.clientX);
-    setY(e.clientY - 100);
+    setY(e.clientY);
     setDetail(true);
     setStar(star);
   }
@@ -54,7 +54,7 @@ export default function Home() {
     }
   }
   return (
-    <main className="flex max-h-screen flex-col items-center justify-between p-24" onContextMenu={ (e) => e.preventDefault()}>
+    <main className="flex max-h-screen w-screen flex-col items-center justify-center" onContextMenu={ (e) => e.preventDefault()}>
       <div
       style={{ width: '100vw', height: '100vh', position: 'relative' }}
       className=''
@@ -75,14 +75,15 @@ export default function Home() {
         setOpen={setShowForm}
         x={x}
         y={y}
-      />
-      <StarDetail
+    />
+
+    <StarDetail
         open={detail}
         setOpen={setDetail}
         star={star}
         x={x}
         y={y}
-      />
+    />
     </main>
   )
 }

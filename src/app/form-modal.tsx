@@ -10,9 +10,16 @@ import {
 } from '@material-tailwind/react';
 import { useEffect, useState } from 'react';
 import { createClient } from '@supabase/supabase-js'
+import { Source_Code_Pro } from 'next/font/google'
 
 // Use a custom domain as the supabase URL
 const supabase = createClient('https://wuuynceixebcfprueyil.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind1dXluY2VpeGViY2ZwcnVleWlsIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTk1NjU5NjIsImV4cCI6MjAxNTE0MTk2Mn0.xX3pxsezWqnIQEF66rHlMBY5VzQ0CpGAuQNGotRFqz4')
+
+
+const sourceCodePro = Source_Code_Pro({ 
+  weight: '700',
+  subsets: ['latin'] 
+})
 
 export default function WishBoard({
   open,
@@ -24,7 +31,6 @@ export default function WishBoard({
     const [wish, setWish] = useState('');
 
     const addWish = async () => {
-        debugger
       const { data, error } = await supabase
         .from('wishes')
         .insert([{ wisher: 'zchoeda101+3@gmail.com', wish: wish, visited_count: 1, client_x: x, client_y: y, name: name }])
@@ -33,56 +39,52 @@ export default function WishBoard({
     };
 
   return (
-    <Dialog
-      size={'md'}
+      <Dialog
+      size={'sm'}
       open={open}
       handler={(res) => {
         setOpen(res);
       }}
-      className='w-[300px]'
-      style={{ top: `${y}px`, left: `${x}px` }}
+      className='relative flex flex-col justify-center items-center w-screen h-screen'
     >
-      <DialogHeader>
-        <div className="px-2 flex justify-between items-center w-full">
-          <div className="text-t_primary font-bold">Make a wish</div>
-        </div>
+      <DialogBody className=' w-screen flex flex-col justify-center items-center'>
+      
+      <form onSubmit={addWish} className="relative flex flex-col justify-start items-start pt-[72px] bg-[#1E1E1E] px-10 w-[601px] h-[559px] flex-shrink-0 rounded-[11px]">
+      <img src='magic_wand.svg' alt='magic wand pic' className='absolute top-[-95px] left-[35%] w-[150px]'/>
+      <DialogHeader className='flex flex-col '>
+        <p className={`${sourceCodePro.className} text-center text-4xl mb-6 font-[700]`}>Make a <span className=' text-[#BCFE50]'>wish!</span></p>
+        <p className=' text-xs font-light text-left mb-8'>
+          // Granting dreams with a touch of stardust, where wishes take flight and miracles ignite – because in every heart, there's a galaxy waiting to be wished upon.
+        </p>
       </DialogHeader>
-      <DialogBody>
-        <form onSubmit={addWish} className="my-4">
-      <label htmlFor="name" className="block text-gray-700 text-sm font-bold mb-2">
-        Name:
-      </label>
-      <input
-        type="text"
-        id="name"
-        name="name"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        style={{ color: 'black' }} 
-        className="border border-gray-300 rounded-md p-2 w-full"
-        required
-      />
+        <input
+          type="text"
+          id="name"
+          name="name"
+          value={name || 'star name'}
+          onChange={(e) => setName(e.target.value)}
+          style={{ color: '#1E1E1E78' }} 
+          className="border h-[45px] border-gray-300 rounded-md p-2 w-full mb-8 focus:outline-[#BCFE50]"
+          required
+        />
 
-      <label htmlFor="wish" className="block mt-4 text-gray-700 text-sm font-bold mb-2">
-        Make a wish:
-      </label>
-      <textarea
-        id="wish"
-        name="wish"
-        value={wish}
-        style={{ color: 'black' }} 
-        onChange={(e) => setWish(e.target.value)}
-        rows={4}
-        className="border border-gray-300 rounded-md p-2 w-full"
-        required
-      />
+        <textarea
+          id="wish"
+          name="wish"
+          value={wish || 'Type your wish here, and let the universe know what you\'re reaching for 🌌✨'}
+          style={{ color: '#1E1E1E78' }} 
+          onChange={(e) => setWish(e.target.value)}
+          rows={4}
+          className="border border-gray-300 rounded-md p-2 w-full focus:outline-[#BCFE50]"
+          required
+        />
 
-      <button
-        type="submit"
-        className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-      >
-        Wish
-      </button>
+        <button
+          type="submit"
+          className="w-full h-[45px] mt-8 bg-[#BCFE50] hover:bg-transparent hover:border-[#BCFE50] hover:border-[2px] hover:text-white transition-all duration-[0.4s]  text-black font-bold py-2 px-4 rounded"
+        >
+          Pick Your Celestial Body
+        </button>
     </form>
       </DialogBody>
     </Dialog>
