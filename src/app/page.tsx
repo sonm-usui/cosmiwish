@@ -43,19 +43,27 @@ export default function Home() {
 
   const viewDetail = (e: any, star: any) => {
     setX(e.clientX);
-    setY(e.clientY - 10);
+    setY(e.clientY - 100);
     setDetail(true);
     setStar(star);
+  }
+
+  const handleMouseLeave = (e: any) => {
+    if(e.clientX === x && (e.clientY-100) === y){
+
+    } else {
+        setDetail(false)
+    }
   }
   return (
     <main className="flex max-h-screen flex-col items-center justify-between p-24" onContextMenu={ (e) => e.preventDefault()}>
       <div
       style={{ width: '100vw', height: '100vh', position: 'relative' }}
       className=''
-      onContextMenu={handleOnClick}
+      onClick={handleOnClick}
     >
       {wishes?.map((star: any, index: any) => (
-        <div onClick={ (e) => viewDetail(e, star)}>
+        <div onMouseOver={ (e) => viewDetail(e, star)}>
           <Star key={index} x={star.client_x} y={star.client_y}/>
           </div>
       ))}
