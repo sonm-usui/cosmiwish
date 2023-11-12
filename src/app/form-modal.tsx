@@ -44,8 +44,8 @@ export default function WishBoard({
         </span></div>
         <img src='magic_wand.svg' alt='magic wand pic' className='absolute top-[-95px] left-[35%] w-[150px]'/>
       <DialogHeader className='flex flex-col '>
-        <p className={`${sourceCodePro.className} text-center text-4xl mb-6 font-[700]`}>Make a <span className=' text-[#BCFE50]'>wish!</span></p>
-        <p className=' text-xs font-light text-left mb-8'>
+        <p className={`${sourceCodePro.className} text-white text-center text-4xl mb-6 font-[700]`}>Make a <span className=' text-[#BCFE50]'>wish!</span></p>
+        <p className='text-white text-xs font-light text-left mb-8'>
           // Granting dreams with a touch of stardust, where wishes take flight and miracles ignite – because in every heart, there's a galaxy waiting to be wished upon.
         </p>
       </DialogHeader>

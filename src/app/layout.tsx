@@ -19,7 +19,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={sourceCodePro.className}>{children}</body>
+      <body className={`${sourceCodePro.className} bg-black`}>{children}</body>
     </html>
   )
 }
