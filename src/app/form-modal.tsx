@@ -23,8 +23,8 @@ export default function WishBoard({
   y,
   setNextPage
 }: any) {
-    const [name, setName] = useState('');
-    const [wish, setWish] = useState('');
+    const [name, setName] = useState('star name');
+    const [wish, setWish] = useState("Type your wish here, and let the universe know what you're reaching for 🌌✨");
 
   return (
       <Dialog
@@ -39,7 +39,9 @@ export default function WishBoard({
       
       <form onSubmit={() => { setNextPage(true)}} className="relative flex flex-col justify-start items-start pt-[72px] bg-[#1E1E1E] px-10 w-[601px] h-[559px] flex-shrink-0 rounded-[11px]">
       <img src='magic_wand.svg' alt='magic wand pic' className='absolute top-[-95px] left-[35%] w-[150px]'/>
-      <div className='flex justify-end w-full -pt-10'><span className=' cursor-pointer' onClick={() => { setOpen(false), setNextPage(false)}}>X</span></div>
+      <div className='flex justify-end w-full -pt-10'><span className=' cursor-pointer' onClick={() => { setOpen(false), setNextPage(false)}}>
+      <img src='x.svg' alt='x'/>
+        </span></div>
         <img src='magic_wand.svg' alt='magic wand pic' className='absolute top-[-95px] left-[35%] w-[150px]'/>
       <DialogHeader className='flex flex-col '>
         <p className={`${sourceCodePro.className} text-center text-4xl mb-6 font-[700]`}>Make a <span className=' text-[#BCFE50]'>wish!</span></p>
@@ -51,7 +53,7 @@ export default function WishBoard({
           type="text"
           id="name"
           name="name"
-          value={name || 'star name'}
+          value={name}
           onChange={(e) => setName(e.target.value)}
           style={{ color: '#1E1E1E78' }} 
           className="border h-[45px] border-gray-300 rounded-md p-2 w-full mb-8 focus:outline-[#BCFE50]"
@@ -61,7 +63,7 @@ export default function WishBoard({
         <textarea
           id="wish"
           name="wish"
-          value={wish || 'Type your wish here, and let the universe know what you\'re reaching for 🌌✨'}
+          value={wish}
           style={{ color: '#1E1E1E78' }} 
           onChange={(e) => setWish(e.target.value)}
           rows={4}
