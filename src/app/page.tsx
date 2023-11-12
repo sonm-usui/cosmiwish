@@ -7,6 +7,7 @@ import { Yomogi } from 'next/font/google';
 
 import { createClient } from '@supabase/supabase-js'
 import StarDetail from './star-detail';
+import StarWishBoard from './star-form-modal';
 
 // Use a custom domain as the supabase URL
 const supabase = createClient('https://wuuynceixebcfprueyil.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind1dXluY2VpeGViY2ZwcnVleWlsIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTk1NjU5NjIsImV4cCI6MjAxNTE0MTk2Mn0.xX3pxsezWqnIQEF66rHlMBY5VzQ0CpGAuQNGotRFqz4')
@@ -19,6 +20,8 @@ export default function Home() {
   const [wishes, setWishes] = useState<any>([]);
   const [star, setStar] = useState<any>(null);
   const [detail, setDetail] = useState<any>(null);
+  const [nextPage, setNextPage] = useState<any>(false)
+
   useEffect( ()=>{
      getData();
   }, [])
@@ -70,12 +73,25 @@ export default function Home() {
         <Star key={index} x={star.x} y={star.y} />
       ))}
     </div>
-    <WishBoard
+
+    { !nextPage ? (
+      <WishBoard
+      open={showForm}
+      setOpen={setShowForm}
+      x={x}
+      y={y}
+      setNextPage={setNextPage}
+  />
+    ) : (
+      <StarWishBoard
         open={showForm}
         setOpen={setShowForm}
         x={x}
         y={y}
+        setNextPage={setNextPage}
     />
+    ) }
+    
 
     <StarDetail
         open={detail}

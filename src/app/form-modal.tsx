@@ -8,13 +8,8 @@ import {
   Input,
   Textarea,
 } from '@material-tailwind/react';
-import { useEffect, useState } from 'react';
-import { createClient } from '@supabase/supabase-js'
+import { useState } from 'react';
 import { Source_Code_Pro } from 'next/font/google'
-
-// Use a custom domain as the supabase URL
-const supabase = createClient('https://wuuynceixebcfprueyil.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind1dXluY2VpeGViY2ZwcnVleWlsIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTk1NjU5NjIsImV4cCI6MjAxNTE0MTk2Mn0.xX3pxsezWqnIQEF66rHlMBY5VzQ0CpGAuQNGotRFqz4')
-
 
 const sourceCodePro = Source_Code_Pro({ 
   weight: '700',
@@ -25,18 +20,11 @@ export default function WishBoard({
   open,
   setOpen,
   x,
-  y
+  y,
+  setNextPage
 }: any) {
-    const [name, setName] = useState('');
-    const [wish, setWish] = useState('');
-
-    const addWish = async () => {
-      const { data, error } = await supabase
-        .from('wishes')
-        .insert([{ wisher: 'zchoeda101+3@gmail.com', wish: wish, visited_count: 1, client_x: x, client_y: y, name: name }])
-        .select();
-        setOpen(false)
-    };
+    const [name, setName] = useState('star name');
+    const [wish, setWish] = useState("Type your wish here, and let the universe know what you're reaching for 🌌✨");
 
   return (
       <Dialog
@@ -45,12 +33,16 @@ export default function WishBoard({
       handler={(res) => {
         setOpen(res);
       }}
-      className='relative flex flex-col justify-center items-center w-screen h-screen'
+      className='relative flex flex-col justify-center items-center w-screen h-screen bg-transparent'
     >
       <DialogBody className=' w-screen flex flex-col justify-center items-center'>
       
-      <form onSubmit={addWish} className="relative flex flex-col justify-start items-start pt-[72px] bg-[#1E1E1E] px-10 w-[601px] h-[559px] flex-shrink-0 rounded-[11px]">
+      <form onSubmit={() => { setNextPage(true)}} className="relative flex flex-col justify-start items-start pt-[72px] bg-[#1E1E1E] px-10 w-[601px] h-[559px] flex-shrink-0 rounded-[11px]">
       <img src='magic_wand.svg' alt='magic wand pic' className='absolute top-[-95px] left-[35%] w-[150px]'/>
+      <div className='flex justify-end w-full -pt-10'><span className=' cursor-pointer' onClick={() => { setOpen(false), setNextPage(false)}}>
+      <img src='x.svg' alt='x'/>
+        </span></div>
+        <img src='magic_wand.svg' alt='magic wand pic' className='absolute top-[-95px] left-[35%] w-[150px]'/>
       <DialogHeader className='flex flex-col '>
         <p className={`${sourceCodePro.className} text-center text-4xl mb-6 font-[700]`}>Make a <span className=' text-[#BCFE50]'>wish!</span></p>
         <p className=' text-xs font-light text-left mb-8'>
@@ -61,7 +53,7 @@ export default function WishBoard({
           type="text"
           id="name"
           name="name"
-          value={name || 'star name'}
+          value={name}
           onChange={(e) => setName(e.target.value)}
           style={{ color: '#1E1E1E78' }} 
           className="border h-[45px] border-gray-300 rounded-md p-2 w-full mb-8 focus:outline-[#BCFE50]"
@@ -71,7 +63,7 @@ export default function WishBoard({
         <textarea
           id="wish"
           name="wish"
-          value={wish || 'Type your wish here, and let the universe know what you\'re reaching for 🌌✨'}
+          value={wish}
           style={{ color: '#1E1E1E78' }} 
           onChange={(e) => setWish(e.target.value)}
           rows={4}
@@ -83,7 +75,7 @@ export default function WishBoard({
           type="submit"
           className="w-full h-[45px] mt-8 bg-[#BCFE50] hover:bg-transparent hover:border-[#BCFE50] hover:border-[2px] hover:text-white transition-all duration-[0.4s]  text-black font-bold py-2 px-4 rounded"
         >
-          Pick Your Celestial Body
+          Pick Your Star
         </button>
     </form>
       </DialogBody>
