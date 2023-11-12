@@ -2,18 +2,13 @@ import React from 'react';
 
 const Star = ({ x, y }: any) => {
   return (
-    <div
-      style={{
-        width: '0px',
-        height: '0px',
-        borderLeft: '2px solid transparent',
-        borderRight: '2px solid transparent',
-        borderBottom: '2px solid white',
-        position: 'absolute',
-        left: x,
-        top: y,
-      }}
-    ></div>
+    <img style={{
+      height: "200px",
+      width: "200px",
+      position: 'absolute',
+      left: x,
+      top: y,
+    }} src='ringed_planet.svg' />
   );
 };
 
