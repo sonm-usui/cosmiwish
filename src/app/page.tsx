@@ -60,7 +60,7 @@ export default function Home() {
     }
   }
   return (
-    <main className="flex max-h-screen w-screen flex-col items-center justify-center" onContextMenu={ (e) => e.preventDefault()}>
+    <main className="bg-black flex max-h-screen w-screen flex-col items-center justify-center" onContextMenu={ (e) => e.preventDefault()}>
       <div
       style={{ width: '100vw', height: '100vh', position: 'relative' }}
       className=''
