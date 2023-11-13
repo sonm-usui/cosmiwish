@@ -13,7 +13,6 @@ import {
 import { useEffect, useState } from 'react';
 import { createClient } from '@supabase/supabase-js'
 import { Source_Code_Pro } from 'next/font/google'
-import test from 'node:test';
 
 // Use a custom domain as the supabase URL
 const supabase = createClient('https://wuuynceixebcfprueyil.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind1dXluY2VpeGViY2ZwcnVleWlsIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTk1NjU5NjIsImV4cCI6MjAxNTE0MTk2Mn0.xX3pxsezWqnIQEF66rHlMBY5VzQ0CpGAuQNGotRFqz4')
@@ -26,19 +25,22 @@ const sourceCodePro = Source_Code_Pro({
 export default function StarWishBoard({
   open,
   setOpen,
+  email,
+  wish,
   x,
   y,
   setNextPage
 }: any) {
     const [name, setName] = useState('star name');
-    const [wish, setWish] = useState('');
     const [dropDownTest, setDropDownTest] = useState('Select Your star')
 
     const addWish = async () => {
-      const { data, error } = await supabase
+      
+        const { data, error } = await supabase
         .from('wishes')
-        .insert([{ wisher: 'zchoeda101+3@gmail.com', wish: wish, visited_count: 1, client_x: x, client_y: y, name: name }])
-        .select();
+        .insert([{wish: wish, visited_count: 1, client_x: x, client_y: y, name: name, email: email, star_type:  dropDownTest}])
+        .select()
+
         setOpen(false)
     };
 
@@ -52,7 +54,7 @@ export default function StarWishBoard({
       className='relative flex flex-col justify-center items-center w-screen h-screen bg-transparent'
     >
       <DialogBody className='w-screen flex flex-col justify-center items-center'>
-      <form onSubmit={addWish} className="relative flex flex-col justify-start items-start pt-[72px] bg-[#1E1E1E] px-10 w-[601px] h-[559px] flex-shrink-0 rounded-[11px]">
+      <div className="relative flex flex-col justify-start items-start pt-[72px] bg-[#1E1E1E] px-10 w-[601px] h-[559px] flex-shrink-0 rounded-[11px]">
         <div className='flex justify-end w-full -pt-10'>
           <span className=' cursor-pointer' onClick={() => { setOpen(false), setNextPage(false)}}>
             <img src='x.svg' alt='x'/>
@@ -68,7 +70,6 @@ export default function StarWishBoard({
         <input
           type="text"
           id="name"
-          name="name"
           value={name}
           onChange={(e) => setName(e.target.value)}
           style={{ color: '#1E1E1E78' }} 
@@ -129,12 +130,12 @@ export default function StarWishBoard({
         </div>
 
         <button
-          type="submit"
+          onClick={addWish}
           className="w-full h-[45px] mt-8 bg-[#BCFE50] hover:bg-transparent hover:border-[#BCFE50] hover:border-[2px] hover:text-white transition-all duration-[0.4s]  text-black font-bold py-2 px-4 rounded"
         >
           Buy your star
         </button>
-    </form>
+    </div>
       </DialogBody>
     </Dialog>
   );

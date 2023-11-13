@@ -19,12 +19,15 @@ export default function Home() {
   const [ y, setY] = useState<any>(0)
   const [wishes, setWishes] = useState<any>([]);
   const [star, setStar] = useState<any>(null);
-  const [detail, setDetail] = useState<any>(null);
+  const [detail, setDetail] = useState<any>(false);
   const [nextPage, setNextPage] = useState<any>(false)
+  const [email, setEmail] = useState('Email');
+  const [wish, setWish] = useState("Type your wish here, and let the universe know what you're reaching for 🌌✨");
+
 
   useEffect( ()=>{
      getData();
-  }, [])
+  }, [showForm])
 
   const getData = async() => {
       let { data: wishes, error } = await supabase
@@ -34,8 +37,8 @@ export default function Home() {
   }
   
   const handleOnClick = (e: any) => {
-      const newStar = { x: e.clientX, y: e.clientY - 100 };
-      setX(e.clientX);
+      const newStar = { x: e.clientX - 100, y: e.clientY - 100 };
+      setX(e.clientX - 100);
       setY(e.clientY - 100);
       setStars([...stars, newStar] as any);
       setShowForm(true)
@@ -43,8 +46,8 @@ export default function Home() {
   };
 
   const viewDetail = (e: any, star: any) => {
-    setX(e.clientX);
-    setY(e.clientY);
+    setX(e.clientX - 100);
+    setY(e.clientY - 100);
     setDetail(true);
     setStar(star);
   }
@@ -65,12 +68,8 @@ export default function Home() {
     >
       {wishes?.map((star: any, index: any) => (
         <div onMouseOver={ (e) => viewDetail(e, star)}>
-          <Star key={index} x={star.client_x} y={star.client_y}/>
+          <Star key={index} x={star.client_x} y={star.client_y} star={star}/>
           </div>
-      ))}
-
-      {stars.map((star: any, index: any) => (
-        <Star key={index} x={star.x} y={star.y} />
       ))}
     </div>
 
@@ -78,6 +77,10 @@ export default function Home() {
       <WishBoard
       open={showForm}
       setOpen={setShowForm}
+      email={email}
+      setEmail={setEmail}
+      wish={wish}
+      setWish={setWish}
       x={x}
       y={y}
       setNextPage={setNextPage}
@@ -88,6 +91,8 @@ export default function Home() {
         setOpen={setShowForm}
         x={x}
         y={y}
+        email={email}
+        wish={wish}
         setNextPage={setNextPage}
     />
     ) }

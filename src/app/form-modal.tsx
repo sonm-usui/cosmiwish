@@ -19,12 +19,15 @@ const sourceCodePro = Source_Code_Pro({
 export default function WishBoard({
   open,
   setOpen,
+  email,
+  setEmail,
+  wish,
+  setWish,
   x,
   y,
   setNextPage
 }: any) {
-    const [name, setName] = useState('star name');
-    const [wish, setWish] = useState("Type your wish here, and let the universe know what you're reaching for 🌌✨");
+    
 
   return (
       <Dialog
@@ -53,8 +56,8 @@ export default function WishBoard({
           type="text"
           id="name"
           name="name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           style={{ color: '#1E1E1E78' }} 
           className="border h-[45px] border-gray-300 rounded-md p-2 w-full mb-8 focus:outline-[#BCFE50]"
           required
