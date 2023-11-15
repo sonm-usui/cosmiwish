@@ -3,7 +3,6 @@
 import { useEffect, useState } from 'react';
 import Star from './star';
 import WishBoard from './form-modal';
-import { Yomogi } from 'next/font/google';
 
 import { createClient } from '@supabase/supabase-js'
 import StarDetail from './star-detail';
@@ -23,7 +22,6 @@ export default function Home() {
   const [nextPage, setNextPage] = useState<any>(false)
   const [email, setEmail] = useState('Email');
   const [wish, setWish] = useState("Type your wish here, and let the universe know what you're reaching for 🌌✨");
-
 
   useEffect( ()=>{
      getData();
@@ -61,16 +59,23 @@ export default function Home() {
     }
   }
   return (
+    <div>
+    <StarDetail
+        open={detail}
+        setOpen={setDetail}
+        star={star}
+    />
+
     <main className="bg-black flex max-h-screen w-screen flex-col items-center justify-center" onContextMenu={ (e) => e.preventDefault()}>
-      <div
+    <div
       style={{ width: '100vw', height: '100vh', position: 'relative' }}
       className=''
       onClick={handleOnClick}
-    >
+      >
       {wishes?.map((star: any, index: any) => (
         <div onClick={ (e) => viewDetail(e, star)}>
           <Star key={index} x={star.client_x} y={star.client_y} star={star}/>
-          </div>
+        </div>
       ))}
     </div>
 
@@ -98,14 +103,10 @@ export default function Home() {
     />
     ) }
     
-
-    <StarDetail
-        open={detail}
-        setOpen={setDetail}
-        star={star}
-        x={x}
-        y={y}
-    />
+    
+    
     </main>
+    </div>
+    
   )
 }
