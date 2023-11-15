@@ -36,13 +36,13 @@ export default function StarWishBoard({
 
     const addWish = async () => {
         if(valid()){
-          const { data, error } = await supabase
-          .from('wishes')
-          .insert([{wish: wish, visited_count: 1, client_x: x, client_y: y, name: name, email: email, star_type:  dropDownTest}])
-          .select()
-          setOpen(false)
-        } else {
-          
+        //   const { data, error } = await supabase
+        //   .from('wishes')
+        //   .insert([{wish: wish, visited_count: 1, client_x: x, client_y: y, name: name, email: email, star_type:  dropDownTest}])
+        //   .select()
+        //   setOpen(false)
+        // } else {   
+          window.location.href = 'https://usui.lemonsqueezy.com/billing';
         }
     };
 
