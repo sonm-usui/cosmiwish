@@ -36,13 +36,23 @@ export default function StarWishBoard({
 
     const addWish = async () => {
         if(valid()){
+          const payload = JSON.stringify([{wish: wish, visited_count: 1, client_x: x, client_y: y, name: name, email: email, star_type:  dropDownTest}]);
+          if(dropDownTest === 'Star X1'){
+            window.location.href = 'https://usui.lemonsqueezy.com/checkout/buy/ba9f4a8d-4548-4b7a-b7c1-66658174eae9?embed=1&checkout[custom][data]=' + payload;
+          } else if(dropDownTest === 'Star X2'){
+            window.location.href = 'https://usui.lemonsqueezy.com/checkout/buy/1d15096c-096a-4169-bc5e-7b4ccec16cca?embed=1&checkout[custom][data]=' + payload;
+          } else if(dropDownTest === 'Star X3'){
+            window.location.href = 'https://usui.lemonsqueezy.com/checkout/buy/7a00937b-a1d1-4cce-aafc-d6638ef7a10c?embed=1&checkout[custom][data]=' + payload;
+          } else {
+            window.location.href = 'https://usui.lemonsqueezy.com/checkout/buy/7a00937b-a1d1-4cce-aafc-d6638ef7a10c?embed=1&checkout[custom][data]=' + payload;
+          }
         //   const { data, error } = await supabase
         //   .from('wishes')
         //   .insert([{wish: wish, visited_count: 1, client_x: x, client_y: y, name: name, email: email, star_type:  dropDownTest}])
         //   .select()
         //   setOpen(false)
         // } else {   
-          window.location.href = 'https://usui.lemonsqueezy.com/billing';
+          
         }
     };
 
