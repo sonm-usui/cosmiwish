@@ -50,6 +50,7 @@ export default function Home() {
     setY(e.clientY - 100);
     setDetail(true);
     setStar(star);
+    setShowForm(false);
   }
 
   const handleMouseLeave = (e: any) => {
@@ -67,7 +68,7 @@ export default function Home() {
       onClick={handleOnClick}
     >
       {wishes?.map((star: any, index: any) => (
-        <div onMouseOver={ (e) => viewDetail(e, star)}>
+        <div onClick={ (e) => viewDetail(e, star)}>
           <Star key={index} x={star.client_x} y={star.client_y} star={star}/>
           </div>
       ))}

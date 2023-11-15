@@ -35,14 +35,23 @@ export default function StarWishBoard({
     const [dropDownTest, setDropDownTest] = useState('Select Your star')
 
     const addWish = async () => {
-      
-        const { data, error } = await supabase
-        .from('wishes')
-        .insert([{wish: wish, visited_count: 1, client_x: x, client_y: y, name: name, email: email, star_type:  dropDownTest}])
-        .select()
-
-        setOpen(false)
+        if(valid()){
+          const { data, error } = await supabase
+          .from('wishes')
+          .insert([{wish: wish, visited_count: 1, client_x: x, client_y: y, name: name, email: email, star_type:  dropDownTest}])
+          .select()
+          setOpen(false)
+        } else {
+          
+        }
     };
+
+    const valid = (): boolean => {
+      if(name === 'star name' || dropDownTest === 'Select Your star' || name === '' || dropDownTest === ''){
+        return false
+      }
+      return true
+    }
 
   return (
       <Dialog
