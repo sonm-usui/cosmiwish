@@ -60,14 +60,8 @@ export default function Home() {
   }
   return (
     <div>
-    <StarDetail
-        open={detail}
-        setOpen={setDetail}
-        star={star}
-    />
-
     <main className="bg-black flex max-h-screen w-screen flex-col items-center justify-center" onContextMenu={ (e) => e.preventDefault()}>
-    <div
+    {(!detail && !showForm) && <div
       style={{ width: '100vw', height: '100vh', position: 'relative' }}
       className=''
       onClick={handleOnClick}
@@ -77,7 +71,7 @@ export default function Home() {
           <Star key={index} x={star.client_x} y={star.client_y} star={star}/>
         </div>
       ))}
-    </div>
+    </div>}
 
     { !nextPage ? (
       <WishBoard
@@ -103,8 +97,11 @@ export default function Home() {
     />
     ) }
     
-    
-    
+    <StarDetail
+        open={detail}
+        setOpen={setDetail}
+        star={star}
+    />
     </main>
     </div>
     
