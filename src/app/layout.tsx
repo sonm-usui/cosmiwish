@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Source_Code_Pro } from 'next/font/google'
+import { Analytics } from '@vercel/analytics/react';
 import './globals.css'
 
 const sourceCodePro = Source_Code_Pro({ 
@@ -20,6 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${sourceCodePro.className} bg-black`}>{children}</body>
+      <Analytics />
     </html>
   )
 }
