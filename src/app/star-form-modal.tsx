@@ -73,7 +73,7 @@ export default function StarWishBoard({
       className='relative flex flex-col justify-center items-center w-screen h-screen bg-transparent'
     >
       <DialogBody className='w-screen flex flex-col justify-center items-center'>
-      <div className="relative flex flex-col justify-start items-start pt-[72px] bg-[#1E1E1E] px-10 w-[601px] h-[559px] flex-shrink-0 rounded-[11px]">
+      <div className="relative flex flex-col justify-start items-start pt-[72px] bg-[#1E1E1E] px-10 w-[601px] h-[559px] flex-shrink-0 rounded-[11px] max-md:w-[501px] max-sm:w-[90%] max-sm:px-5">
         <div className='flex justify-end w-full -pt-10'>
           <span className=' cursor-pointer' onClick={() => { setOpen(false), setNextPage(false)}}>
             <img src='x.svg' alt='x'/>
@@ -81,7 +81,7 @@ export default function StarWishBoard({
         </div>
         <img src='magic_wand.svg' alt='magic wand pic' className='absolute top-[-95px] left-[35%] w-[150px]'/>
       <DialogHeader className='flex flex-col'>
-        <p className={`${sourceCodePro.className} text-white text-center text-4xl mb-6 font-[700]`}>Select Your <br /><span className=' text-[#BCFE50]'>Celestial Body</span></p>
+        <p className={`${sourceCodePro.className} text-white text-center text-4xl mb-6 font-[700] max-sm:text-2xl`}>Select Your <br /><span className=' text-[#BCFE50]'>Celestial Body</span></p>
         <p className=' text-xs font-light text-left mb-8 text-white'>
         // Embark on a Celestial Odyssey: Unveil Your Cosmic Identity as You Select Your Celestial Body and Illuminate Your Journey Through the Cosmos.
         </p>

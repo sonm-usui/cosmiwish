@@ -40,14 +40,14 @@ export default function WishBoard({
     >
       <DialogBody className=' w-screen flex flex-col justify-center items-center'>
       
-      <form onSubmit={() => { setNextPage(true)}} className="relative flex flex-col justify-start items-start pt-[72px] bg-[#1E1E1E] px-10 w-[601px] h-[559px] flex-shrink-0 rounded-[11px]">
+      <form onSubmit={() => { setNextPage(true)}} className="relative flex flex-col justify-start items-start pt-[72px] bg-[#1E1E1E] px-10 w-[601px] h-[559px] flex-shrink-0 rounded-[11px] max-md:w-[501px] max-sm:w-[90%] max-sm:px-5">
       <img src='magic_wand.svg' alt='magic wand pic' className='absolute top-[-95px] left-[35%] w-[150px]'/>
       <div className='flex justify-end w-full -pt-10'><span className=' cursor-pointer' onClick={() => { setOpen(false), setNextPage(false)}}>
       <img src='x.svg' alt='x'/>
         </span></div>
         <img src='magic_wand.svg' alt='magic wand pic' className='absolute top-[-95px] left-[35%] w-[150px]'/>
       <DialogHeader className='flex flex-col '>
-        <p className={`${sourceCodePro.className} text-white text-center text-4xl mb-6 font-[700]`}>Make a <span className=' text-[#BCFE50]'>wish!</span></p>
+        <p className={`${sourceCodePro.className} text-white text-center text-4xl mb-6 font-[700] max-sm:text-2xl`}>Make a <span className=' text-[#BCFE50]'>wish!</span></p>
         <p className='text-white text-xs font-light text-left mb-8'>
           // Granting dreams with a touch of stardust, where wishes take flight and miracles ignite – because in every heart, there's a galaxy waiting to be wished upon.
         </p>
